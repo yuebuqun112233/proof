@@ -1,0 +1,66 @@
+e the stack depth does not exceed maxstack - 1,
+          so that a subroutinizer can insert subroutine calls (#1301,
+          https://github.com/googlei18n/ufo2ft/issues/266).
+        - [otTables] Added support for fixing offset overflow errors occurring inside
+          ``MarkBasePos`` subtables (#1297).
+        - [subset] Write the default output file extension based on ``--flavor`` option,
+          or the value of ``TTFont.sfntVersion`` (d7ac0ad).
+        - [unicodedata] Updated Blocks, Scripts and ScriptExtensions for Unicode 11
+          (452c85e).
+        - [xmlWriter] Added context manager to XMLWriter class to autoclose file
+          descriptor on exit (#1290).
+        - [psCharStrings] Optimize the charstring's bytecode by encoding as integers
+          all float values that have no decimal portion (8d7774a).
+        - [ttFont] Fixed missing import of ``TTLibError`` exception (#1285).
+        - [feaLib] Allow any languages other than ``dflt`` under ``DFLT`` script
+          (#1278, #1292).
+        
+        3.28.0 (released 2018-06-19)
+        ----------------------------
+        
+        - [featureVars] Added experimental module to build ``FeatureVariations``
+          tables. Still needs to be hooked up to ``varLib.build`` (#1240).
+        - [fixedTools] Added ``otRound`` to round floats to nearest integer towards
+          positive Infinity. This is now used where we deal with visual data like X/Y
+          coordinates, advance widths/heights, variation deltas, and similar (#1274,
+          #1248).
+        - [subset] Improved GSUB closure memoize algorithm.
+        - [varLib.models] Fixed regression in model resolution (180124, #1269).
+        - [feaLib.ast] Fixed error when converting ``SubtableStatement`` to string
+          (#1275).
+        - [varLib.mutator] Set ``OS/2.usWeightClass`` and ``usWidthClass``, and
+          ``post.italicAngle`` based on the 'wght', 'wdth' and 'slnt' axis values
+          (#1276, #1264).
+        - [py23/loggingTools] Don't automatically set ``logging.lastResort`` handler
+          on py27. Moved ``LastResortLogger`` to the ``loggingTools`` module (#1277).
+        
+        3.27.1 (released 2018-06-11)
+        ----------------------------
+        
+        - [ttGlyphPen] Issue a warning and skip building non-existing components
+          (https://github.com/googlei18n/fontmake/issues/411).
+        - [tests] Fixed issue running ttx_test.py from a tagged commit.
+        
+        3.27.0 (released 2018-06-11)
+        ----------------------------
+        
+        - [designspaceLib] Added new ``conditionSet`` element to ``rule`` element in
+          designspace document. Bumped ``format`` attribute to ``4.0`` (previously,
+          it was formatted as an integer). Removed ``checkDefault``, ``checkAxes``
+          methods, and any kind of guessing about the axes when the ``<axes>`` element
+          is missing. The default master is expected at the intersection of all default
+          values for each axis (#1254, #1255, #1267).
+        - [cffLib] Fixed issues when compiling CFF2 or converting from CFF when the
+          font has an FDArray (#1211, #1271).
+        - [varLib] Avoid attempting to build ``cvar`` table when ``glyf`` table is not
+          present, as is the case for CFF2 fonts.
+        - [subset] Handle None coverages in MarkGlyphSets; revert commit 02616ab that
+          sets empty Coverage tables in MarkGlyphSets to None, to make OTS happy.
+        - [ttFont] Allow to build glyph order from ``maxp.numGlyphs`` when ``post`` or
+          ``cmap`` are missing.
+        - [ttFont] Added ``__len__`` method to ``_TTGlyphSet``.
+        - [glyf] Ensure ``GlyphCoordinates`` never overflow signed shorts (#1230).
+        - [py23] Added alias for ``itertools.izip`` shadowing the built-in ``zip``.
+        - [loggingTools] Memoize ``log`` property of ``LogMixin`` class (fbab12).
+        - [ttx] Impoved test coverage (#1261).
+        - [Snippets] Addded script to append a suffix to all fami
